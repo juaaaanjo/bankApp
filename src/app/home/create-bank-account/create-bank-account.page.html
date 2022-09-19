@@ -1,0 +1,68 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons routerLink="/home" routerDirection="root" slot="start">
+      <ion-button>
+        <ion-icon
+          class="header-back-icon"
+          name="chevron-back-outline"
+        ></ion-icon>
+        <ion-text class="header-back-text"> Crear Cuenta </ion-text>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="content-container" scroll-y="false">
+  <img
+    class="card__front-logo"
+    src="../../assets/img/create-account-icon.svg"
+  />
+
+  <div class="account-type-container">
+    <ion-text class="account-type-title"
+      >¿Que tipo de cuenta te gustaria manejar?</ion-text
+    >
+  </div>
+
+  <div class="servicesPadding">
+    <button
+      name="ahorros"
+      class="transfer-buttons"
+      (click)="accountClick('ahorros')"
+    >
+      <ion-icon
+        class="transfer-icon"
+        slot="icon-only"
+        src="../../assets/img/transfer.svg"
+      ></ion-icon>
+      <ion-text class="accounts-titles">
+        <br />
+        Ahorros
+      </ion-text>
+    </button>
+
+    <button class="transfer-buttons" (click)="accountClick('corriente')">
+      <ion-icon
+        class="transfer-icon"
+        slot="icon-only"
+        src="../../assets/img/transfer.svg"
+      ></ion-icon>
+      <ion-text class="accounts-titles">
+        <br />
+        Corriente
+      </ion-text>
+    </button>
+  </div>
+
+  <ion-item class="input-padding">
+    <ion-label class="input-alias" floating>Alias</ion-label>
+    <ion-input name="alias" [(ngModel)]="alias"> </ion-input>
+  </ion-item>
+
+  <ion-button
+    style="--background: #a5f1e9"
+    class="create-button"
+    routerLink="/home"
+    >Crear Cuenta</ion-button
+  >
+</ion-content>

@@ -1,0 +1,87 @@
+<ion-content scroll-y="false" id="contentContainer" [fullscreen]="true">
+  <ion-item lines="none" class="new-background-color">
+    <ion-img slot="end" alt="" src="../../assets/img/qr-code.svg"></ion-img>
+
+    <ion-label>
+      <h2 class="custom-font">Hola, {{user?.lastName}}</h2>
+      <p class="custom-font">Bienvenido de nuevo</p>
+    </ion-label>
+  </ion-item>
+
+  <div *ngIf="!accounts" class="card" routerLink="/home/create-bank-account">
+    <div class="card__front card__part">
+      <img
+        (click)="scanBarcode()"
+        class="card__front-logo"
+        src="../../assets/img/add-plus.svg"
+      />
+      <p class="create-account-styling">Crear cuenta bancaria</p>
+    </div>
+  </div>
+
+  <ion-slides>
+    <ion-slide *ngFor="let account of accounts">
+      <div class="card__front card__part">
+        <ion-text class="account-type-header-title"
+          >{{account?.accountType}}</ion-text
+        >
+        <ion-text class="amount-text">$ 5.000.000</ion-text>
+        <ion-text class="create-account-styling">Cuenta no.</ion-text>
+        <ion-text class="create-account-styling">{{account?.account}}</ion-text>
+      </div>
+
+      <div class="alias-container">
+        <div *ngIf="!editControl" style="display: inline-block">
+          <ion-text class="alias-text">Alias</ion-text>
+          <ion-icon
+            (click)="editAccount('works!')"
+            name="create-outline"
+          ></ion-icon>
+        </div>
+        <ion-text *ngIf="!editControl" class="alias-text"
+          >{{account?.alias}}</ion-text
+        >
+
+        <ion-item *ngIf="editControl" class="input-padding">
+          <ion-label class="input-alias" floating>Alias</ion-label>
+          <ion-input name="alias" [(ngModel)]="alias"> </ion-input>
+        </ion-item>
+      </div>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-text id="transfer-title">Transferir</ion-text>
+
+  <div class="servicesPadding">
+    <button class="transfer-buttons" routerLink="/home/funds-transfer">
+      <ion-icon
+        class="transfer-icon"
+        slot="icon-only"
+        src="../../assets/img/transfer.svg"
+      ></ion-icon>
+      <ion-text class="accounts-titles">
+        <br />
+        A cuentas</ion-text
+      >
+      <p class="accounts-subtitles">propias</p>
+    </button>
+
+    <button class="transfer-buttons" routerLink="/home/funds-transfer">
+      <ion-icon
+        class="transfer-icon"
+        slot="icon-only"
+        src="../../assets/img/transfer.svg"
+      ></ion-icon>
+      <ion-text class="accounts-titles">
+        <br />
+        A cuentas
+      </ion-text>
+      <p class="accounts-subtitles">no inscritas</p>
+    </button>
+  </div>
+
+  <ion-text id="transactions-title">Transacciones Recientes</ion-text>
+
+  <img class="noTransactions-icon" src="../../assets/img/no-transactions.svg" />
+  <ion-text class="noTransactions-title">Aun no tienes transacciones</ion-text>
+</ion-content>

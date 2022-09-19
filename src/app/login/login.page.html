@@ -1,0 +1,33 @@
+
+<ion-content scroll-y="false" id="content-container" [fullscreen]="true">
+
+  <ion-text class="loginTitle">Log in</ion-text>
+ 
+  <ion-row>
+    <ion-col col-3>
+      <ion-item>
+        <ion-label floating>Username</ion-label>
+        <ion-input type="email" class="loginInputHeaders" name="email" [(ngModel)]="email"> </ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-9>
+      <ion-item class="padding-left-2px">
+        <ion-label class="loginInputHeaders" floating>Password</ion-label>
+        <ion-input [(ngModel)]="password" id="Password" type="password" >  </ion-input>
+        <div class="toggle-password icon-eye" toggle="#Password"></div>
+      </ion-item>
+    </ion-col>
+   
+  </ion-row>
+
+<ion-button id="loginButton" (click)="login()">Log In</ion-button>
+
+</ion-content>
+
+<ion-footer class="ion-no-border" >
+  <div id="container">
+    <p>¿No tienes una cuenta? <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">Crear Cuenta</a></p>
+  </div>
+</ion-footer>

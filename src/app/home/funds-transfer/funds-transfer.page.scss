@@ -1,0 +1,76 @@
+ion-select::part(icon) {
+    display: none !important;
+}
+
+#content-container {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+}
+
+.header-back-icon {
+    color: #212121;
+}
+
+.header-back-text {
+    color: #212121;
+}
+
+#transfer-title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #707070;
+}
+
+.list-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10% 0 10% 0;
+}
+
+.text-decorator-to-account {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: #707070;
+}
+
+.list-container2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 3% 0 20% 0;
+    border-radius: 10px;
+}
+
+.to-account {
+    --background: #A5F1E9;
+    width: 50%;
+}
+
+.transfer-amount-title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 140%;
+    color: #707070;
+}
+
+.amount-input-header {
+    font-weight: 400;
+    font-size: 14px;
+    color: #707070;
+}
+
+.input-padding {
+    margin-top: 5%;
+}
+
+.create-button {
+    margin-top: 30%;
+    width: 340px;
+    height: 60px;
+    color: #212121;
+}

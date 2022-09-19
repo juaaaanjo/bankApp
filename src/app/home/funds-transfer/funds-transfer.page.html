@@ -1,0 +1,52 @@
+<ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons routerLink="/home" routerDirection="root" slot="start">
+      <ion-button>
+        <ion-icon class="header-back-icon" name="chevron-back-outline"></ion-icon>
+        <ion-text class="header-back-text"> Transferencias </ion-text>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="content-container" scroll-y="false">
+
+
+  <div class="list-container">
+    <ion-text id="transfer-title">Transferir</ion-text>
+
+    <ion-list lines="none">
+      <ion-item no-lines>
+        <ion-select placeholder="Selecciona cuenta">
+          <ion-select-option value="apples">Ahorros 04300035</ion-select-option>
+          <ion-select-option value="oranges">Corriente</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+  </div>
+
+  <ion-text class="text-decorator-to-account">Selecciona cuenta de destino</ion-text>
+
+  <ion-list class="list-container2" lines="none">
+    <ion-item class="to-account" no-lines>
+      <ion-select style="--placeholder-color: #212121" placeholder="Selecciona cuenta">
+        <ion-select-option value="apples">Ahorros 04300035</ion-select-option>
+        <ion-select-option value="oranges">Corriente</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-text class="transfer-amount-title">¿Cuanto deseas transferir?</ion-text>
+
+  <ion-item class="input-padding">
+    <ion-label class="amount-input-header" floating>Cantidad</ion-label>
+    <ion-input> </ion-input>
+  </ion-item>
+
+  <ion-button style="--background:#A5F1E9" class="create-button" routerLink="/home/components/transaction-approval¨">Transferir</ion-button>
+
+  <app-transaction-approval
+  (selectPageEvent)="transactionModal($event)"
+  ></app-transaction-approval>
+</ion-content>
