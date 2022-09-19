@@ -30,6 +30,20 @@ ion-header {
   justify-content: center;
   align-items: center;
   display: flex;
+  margin-top: 10%; 
+}
+
+.to-account {
+    --background: #A5F1E9;
+    width: 50%;
+}
+
+.list-container2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 3% 0 20% 0;
+    border-radius: 10px;
 }
 
 .servicesPadding {
@@ -80,4 +94,18 @@ ion-header {
   width: 340px;
   height: 60px;
   color: #212121;
+}
+
+.transfer-amount-title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    margin-top: 20%;
+    color: #707070;
+}
+
+.amount-input-header {
+    font-weight: 400;
+    font-size: 14px;
+    color: #707070;
 }

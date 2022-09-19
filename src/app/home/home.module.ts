@@ -14,7 +14,6 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    BarcodeScanner
   ],
   declarations: [HomePage]
 })

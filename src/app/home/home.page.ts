@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import * as jQuery from 'jquery';
 import { AuthenticationService } from 'src/providers/authentication.service';
 import { MethodsService } from 'src/providers/methods.service';
-import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +22,8 @@ export class HomePage implements OnInit {
   constructor(
     private authService: AuthenticationService,
     private methodsService: MethodsService,
-    private barcodeScanner: BarcodeScanner
+    private qrScanner: QRScanner,
+
   ) {}
 
   ngOnInit(): void {
@@ -47,24 +48,12 @@ export class HomePage implements OnInit {
   }
 
  private async scanBarcode(): Promise<void>{
-    const options: BarcodeScannerOptions = {
-      preferFrontCamera: false,
-      showFlipCameraButton: true,
-      showTorchButton: true,
-      torchOn: false,
-      prompt: 'Place a barcode inside the scan area',
-      resultDisplayDuration: 500,
-      formats: 'EAN_13,EAN_8,QR_CODE,PDF_417 ',
-      orientation: 'portrait',
-    };
+       const scanQR = this.qrScanner.scan().subscribe((text: string) => {
+         console.log('Scanned something', text);
 
-    this.barcodeScanner.scan(options).then(barcodeData => {
-      console.log('Barcode data', barcodeData);
-      this.scannedData = barcodeData;
-
-    }).catch(err => {
-      console.log('Error', err);
-    });
+         this.qrScanner.hide(); // hide camera preview
+         scanQR.unsubscribe(); // stop scanning
+       });
   }
 
 }

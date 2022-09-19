@@ -45,13 +45,25 @@ export class MethodsService {
     }
   }
 
-  async put(request: string, data: any, toLower: boolean = true) {
+  public async put(request: string, data: any, toLower: boolean = true) {
     try {
       const result = await this.http
         .put(AppComponent.bankAPI + request, data)
         .pipe(map((res) => res))
         .toPromise();
 
+      return result;
+    } catch (error) {
+      return this.handleError(error);
+    }
+  }
+
+  public async getJSON(path) {
+    try {
+      const result = await this.http
+        .get(path)
+        .pipe(map((res) => res))
+        .toPromise();
       return result;
     } catch (error) {
       return this.handleError(error);
@@ -67,6 +79,6 @@ export class MethodsService {
 
     toast.present();
 
-    return error.error.message;
+    return error.message;
   }
 }

@@ -42,7 +42,7 @@ export class LoginPage implements OnInit {
       this.process = true;
       this.authService.login(this.email, this.password);
 
-      this.navCtrl.navigateRoot(['/home']);
+      this.navCtrl.navigateForward(['/home']);
       this.process = false;
     }
   }

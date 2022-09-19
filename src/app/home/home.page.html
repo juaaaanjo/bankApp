@@ -1,9 +1,9 @@
 <ion-content scroll-y="false" id="contentContainer" [fullscreen]="true">
   <ion-item lines="none" class="new-background-color">
-    <ion-img slot="end" alt="" src="../../assets/img/qr-code.svg"></ion-img>
+    <ion-img (click)="scanBarcode()" slot="end" alt="" src="../../assets/img/qr-code.svg"></ion-img>
 
     <ion-label>
-      <h2 class="custom-font">Hola, {{user?.lastName}}</h2>
+      <h2 class="custom-font">Hola, {{user?.firstName}}</h2>
       <p class="custom-font">Bienvenido de nuevo</p>
     </ion-label>
   </ion-item>
@@ -11,7 +11,6 @@
   <div *ngIf="!accounts" class="card" routerLink="/home/create-bank-account">
     <div class="card__front card__part">
       <img
-        (click)="scanBarcode()"
         class="card__front-logo"
         src="../../assets/img/add-plus.svg"
       />
@@ -25,7 +24,7 @@
         <ion-text class="account-type-header-title"
           >{{account?.accountType}}</ion-text
         >
-        <ion-text class="amount-text">$ 5.000.000</ion-text>
+        <ion-text class="amount-text">{{account?.balance | currency:'COP' }} </ion-text>
         <ion-text class="create-account-styling">Cuenta no.</ion-text>
         <ion-text class="create-account-styling">{{account?.account}}</ion-text>
       </div>
@@ -50,10 +49,10 @@
     </ion-slide>
   </ion-slides>
 
-  <ion-text id="transfer-title">Transferir</ion-text>
+  <ion-text id="transfer-title">Inscribir</ion-text>
 
   <div class="servicesPadding">
-    <button class="transfer-buttons" routerLink="/home/funds-transfer">
+    <button disabled class="transfer-button" routerLink="/home/create-bank-account">
       <ion-icon
         class="transfer-icon"
         slot="icon-only"
@@ -66,7 +65,7 @@
       <p class="accounts-subtitles">propias</p>
     </button>
 
-    <button class="transfer-buttons" routerLink="/home/funds-transfer">
+    <button class="transfer-buttons" routerLink="/home/create-bank-account">
       <ion-icon
         class="transfer-icon"
         slot="icon-only"

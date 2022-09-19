@@ -6,21 +6,42 @@
           class="header-back-icon"
           name="chevron-back-outline"
         ></ion-icon>
-        <ion-text class="header-back-text"> Crear Cuenta </ion-text>
+        <ion-text class="header-back-text"> Inscribir cuenta </ion-text>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content id="content-container" scroll-y="false">
-  <img
+
+  <ion-list class="list-container2" lines="none">
+    <ion-item class="to-account" no-lines>
+      <ion-select [(ngModel)]="financialInstitution" style="--placeholder-color: #212121" placeholder="Entidad bancaria">
+        <ion-select-option [value]="item" *ngFor="let item of banks">{{item}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <div style="margin-top: 10%">
+
+  <ion-text class="transfer-amount-title">¿Conoces el numero de cuenta?</ion-text>
+
+  <ion-item class="input-padding">
+    <ion-label class="input-alias" floating>Numero de Cuenta</ion-label>
+    <ion-input name="account" [(ngModel)]="account"> </ion-input>
+  </ion-item>
+</div>
+
+  
+
+  <!--<img
     class="card__front-logo"
     src="../../assets/img/create-account-icon.svg"
-  />
+  /> -->
 
   <div class="account-type-container">
     <ion-text class="account-type-title"
-      >¿Que tipo de cuenta te gustaria manejar?</ion-text
+      >¿Que tipo de cuenta es tu cuenta destino?</ion-text
     >
   </div>
 
@@ -28,7 +49,7 @@
     <button
       name="ahorros"
       class="transfer-buttons"
-      (click)="accountClick('ahorros')"
+      (click)="accountClick('Ahorros')"
     >
       <ion-icon
         class="transfer-icon"
@@ -41,7 +62,7 @@
       </ion-text>
     </button>
 
-    <button class="transfer-buttons" (click)="accountClick('corriente')">
+    <button class="transfer-buttons" (click)="accountClick('Corriente')">
       <ion-icon
         class="transfer-icon"
         slot="icon-only"
@@ -59,9 +80,20 @@
     <ion-input name="alias" [(ngModel)]="alias"> </ion-input>
   </ion-item>
 
+  <ion-list lines="none">
+    <ion-item no-lines>
+      <ion-select [(ngModel)]="currency" placeholder="Moneda">
+        <ion-select-option value="COP">COP</ion-select-option>
+        <ion-select-option value="USD">USD</ion-select-option>
+        <ion-select-option value="EUR">EUR</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
   <ion-button
     style="--background: #a5f1e9"
     class="create-button"
+    (click)="createAccount()"
     routerLink="/home"
     >Crear Cuenta</ion-button
   >
