@@ -8,6 +8,28 @@
     </ion-label>
   </ion-item>
 
+  <div *ngIf="editControl" class="fadeMe">
+      <ion-card class="card-container">
+        <ion-icon (click)="closeEdit()" class="close-icon" name="close-outline"></ion-icon>
+        <ion-text class="alias-text">Editar Alias</ion-text>
+
+        <ion-item class="input-padding">
+          <ion-label class="input-alias" floating>Alias</ion-label>
+          <ion-input name="alias" [(ngModel)]="alias"> </ion-input>
+        </ion-item>
+
+        <ion-button
+        style="--background: #a5f1e9"
+        class="edit-button"
+        (click)="editAccount()"
+        routerLink="/home"
+        >Editar alias</ion-button
+      >
+
+      </ion-card>
+   
+  </div>
+
   <div *ngIf="!accounts" class="card" routerLink="/home/create-bank-account">
     <div class="card__front card__part">
       <img
@@ -19,7 +41,7 @@
   </div>
 
   <ion-slides>
-    <ion-slide *ngFor="let account of accounts">
+    <ion-slide (click)="editAlias(account._id)" *ngFor="let account of accounts">
       <div class="card__front card__part">
         <ion-text class="account-type-header-title"
           >{{account?.accountType}}</ion-text
@@ -30,29 +52,22 @@
       </div>
 
       <div class="alias-container">
-        <div *ngIf="!editControl" style="display: inline-block">
-          <ion-text class="alias-text">Alias</ion-text>
-          <ion-icon
-            (click)="editAccount('works!')"
-            name="create-outline"
-          ></ion-icon>
-        </div>
         <ion-text *ngIf="!editControl" class="alias-text"
           >{{account?.alias}}</ion-text
         >
-
-        <ion-item *ngIf="editControl" class="input-padding">
-          <ion-label class="input-alias" floating>Alias</ion-label>
-          <ion-input name="alias" [(ngModel)]="alias"> </ion-input>
-        </ion-item>
       </div>
     </ion-slide>
   </ion-slides>
 
-  <ion-text id="transfer-title">Inscribir</ion-text>
+  <hr class="hr1">
 
-  <div class="servicesPadding">
-    <button disabled class="transfer-button" routerLink="/home/create-bank-account">
+  <div class="titles-padding">
+ <ion-text *ngIf="!editControl" id="transfer-title">Administrar</ion-text>
+  <ion-text *ngIf="!editControl" id="transfer-title">Inscribir</ion-text>
+</div>
+
+  <div *ngIf="!editControl" class="servicesPadding">
+    <button class="transfer-buttons" routerLink="/home/manage-accounts">
       <ion-icon
         class="transfer-icon"
         slot="icon-only"
@@ -60,9 +75,9 @@
       ></ion-icon>
       <ion-text class="accounts-titles">
         <br />
-        A cuentas</ion-text
+        Cuentas</ion-text
       >
-      <p class="accounts-subtitles">propias</p>
+      <p class="accounts-subtitles">de terceros</p>
     </button>
 
     <button class="transfer-buttons" routerLink="/home/create-bank-account">
@@ -73,14 +88,14 @@
       ></ion-icon>
       <ion-text class="accounts-titles">
         <br />
-        A cuentas
+        Cuentas
       </ion-text>
-      <p class="accounts-subtitles">no inscritas</p>
+      <p class="accounts-subtitles">de terceros</p>
     </button>
   </div>
 
-  <ion-text id="transactions-title">Transacciones Recientes</ion-text>
+  <ion-text *ngIf="!editControl" id="transactions-title">Transacciones Recientes</ion-text>
 
-  <img class="noTransactions-icon" src="../../assets/img/no-transactions.svg" />
-  <ion-text class="noTransactions-title">Aun no tienes transacciones</ion-text>
+  <img *ngIf="!editControl" class="noTransactions-icon" src="../../assets/img/no-transactions.svg" />
+  <ion-text *ngIf="!editControl" class="noTransactions-title">Aun no tienes transacciones</ion-text>
 </ion-content>

@@ -13,26 +13,35 @@
 </ion-header>
 
 <ion-content id="content-container" scroll-y="false">
-
   <ion-list class="list-container2" lines="none">
     <ion-item class="to-account" no-lines>
-      <ion-select [(ngModel)]="financialInstitution" style="--placeholder-color: #212121" placeholder="Entidad bancaria">
-        <ion-select-option [value]="item" *ngFor="let item of banks">{{item}}</ion-select-option>
+      <ion-select
+        [(ngModel)]="financialInstitution"
+        style="--placeholder-color: #212121"
+        placeholder="Entidad bancaria"
+      >
+        <ion-select-option [value]="item" *ngFor="let item of bankList"
+          >{{item}}</ion-select-option
+        >
       </ion-select>
     </ion-item>
   </ion-list>
 
   <div style="margin-top: 10%">
+    <ion-text class="transfer-amount-title"
+      >¿Conoces el numero de cuenta?</ion-text
+    >
 
-  <ion-text class="transfer-amount-title">¿Conoces el numero de cuenta?</ion-text>
+    <ion-item class="input-padding">
+      <ion-label class="input-alias" floating>Numero de Cuenta</ion-label>
+      <ion-input name="account" [(ngModel)]="account"> </ion-input>
+    </ion-item>
 
-  <ion-item class="input-padding">
-    <ion-label class="input-alias" floating>Numero de Cuenta</ion-label>
-    <ion-input name="account" [(ngModel)]="account"> </ion-input>
-  </ion-item>
-</div>
-
-  
+    <ion-item *ngIf="account" class="input-padding">
+      <ion-label class="input-alias" floating>Identificacion</ion-label>
+      <ion-input name="accountHolderId" [(ngModel)]="accountHolderId"> </ion-input>
+    </ion-item>
+  </div>
 
   <!--<img
     class="card__front-logo"

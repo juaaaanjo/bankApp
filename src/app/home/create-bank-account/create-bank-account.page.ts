@@ -7,18 +7,19 @@ import { MethodsService } from 'src/providers/methods.service';
   styleUrls: ['./create-bank-account.page.scss'],
 })
 export class CreateBankAccountPage implements OnInit {
-  public accountEnum: {
-    account: number;
-    alias: string;
-    currency: string;
-    accountType: string;
-    finantialInstitution: string;
-    accountHolderID: string;
+  public accountEnum = {
+    account: null,
+    alias:  null,
+    currency:  null,
+    accountType:  null,
+    finantialInstitution:  null,
+    accountHolderID:  null,
   };
   public accountType;
   public alias;
   public bankList;
   public account;
+  public accountHolderId;
   public financialInstitution;
   public currency;
 
@@ -35,17 +36,22 @@ export class CreateBankAccountPage implements OnInit {
   }
 
   private async setEnumData(): Promise<any> {
-    this.accountEnum.account = this.account;
-    this.accountEnum.alias = this.alias;
-    this.accountEnum.accountType = this.accountType;
-    this.accountEnum.finantialInstitution = this.financialInstitution;
-    this.accountEnum.currency = this.currency;
+    this.accountEnum = {
+      account: this.account,
+      alias: this.alias,
+      accountType: this.accountType,
+      finantialInstitution: this.financialInstitution,
+      currency: this.currency,
+      accountHolderID: this.accountHolderId
+    };
   }
 
   private async createAccount(): Promise<any> {
     this.setEnumData();
     const data = this.accountEnum;
-    const request = this.methodsService.post('/thirdparty', { data });
+    console.log(data);
+    const request = this.methodsService.post('/thirdparty/', data );
+    console.log(request);
   }
 
   private accountClick(event): void {

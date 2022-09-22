@@ -15,15 +15,16 @@ export class HomePage implements OnInit {
   public accounts;
   public editControl;
   public alias: boolean;
-  public scannedData: any;
+  public scannedData;
   public encodedData: '';
-  public encodeData: any;
-  public inputData: any;
+  public encodeData;
+  public inputData;
+  public accountId;
+
   constructor(
     private authService: AuthenticationService,
     private methodsService: MethodsService,
-    private qrScanner: QRScanner,
-
+    private qrScanner: QRScanner
   ) {}
 
   ngOnInit(): void {
@@ -41,19 +42,36 @@ export class HomePage implements OnInit {
     return this.user;
   }
 
-  private async editAccount(event): Promise<void> {
-    console.log(event);
+  private async editAccount(): Promise<void> {
+    const request = await this.methodsService.patch(
+      `/account/${this.accountId}`,
+      {
+        alias: this.alias,
+      }
+    ).then(res =>{
+      if (res){
+        this.editControl = false;
+        window.location.href = '/home';
+      }
+    });
+  }
+
+  private async editAlias(event): Promise<void> {
     this.editControl = true;
-    const request = await this.methodsService.put('/account', { alias: event });
+    this.accountId = event;
+    console.log(this.accountId);
   }
 
- private async scanBarcode(): Promise<void>{
-       const scanQR = this.qrScanner.scan().subscribe((text: string) => {
-         console.log('Scanned something', text);
-
-         this.qrScanner.hide(); // hide camera preview
-         scanQR.unsubscribe(); // stop scanning
-       });
+  private async closeEdit(): Promise<void> {
+    this.editControl = false;
   }
 
+  private async scanBarcode(): Promise<void> {
+    const scanQR = this.qrScanner.scan().subscribe((text: string) => {
+      console.log('Scanned something', text);
+
+      this.qrScanner.hide();
+      scanQR.unsubscribe();
+    });
+  }
 }

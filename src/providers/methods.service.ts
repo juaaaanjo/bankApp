@@ -35,7 +35,7 @@ export class MethodsService {
   ): Promise<any> {
     try {
       const response = await this.http
-        .post(`${AppComponent.bankAPI}${request}`, payload)
+        .post<any>(`${AppComponent.bankAPI}${request}`, payload)
         .pipe(map((res) => res))
         .toPromise();
 
@@ -45,10 +45,10 @@ export class MethodsService {
     }
   }
 
-  public async put(request: string, data: any, toLower: boolean = true) {
+  async patch(request: string, data: any, toLower: boolean = true) {
     try {
       const result = await this.http
-        .put(AppComponent.bankAPI + request, data)
+        .patch(AppComponent.bankAPI + request, data)
         .pipe(map((res) => res))
         .toPromise();
 
@@ -72,7 +72,7 @@ export class MethodsService {
 
   private async handleError(error) {
     const toast = await this.toastController.create({
-      message: error.error.message,
+      message: error.message,
       duration: 2000,
       color: 'danger',
     });

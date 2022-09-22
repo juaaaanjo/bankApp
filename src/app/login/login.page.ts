@@ -25,7 +25,7 @@ export class LoginPage implements OnInit {
   }
 
   private passwordHidden(): void {
-    jQuery('.toggle-password').click(function () {
+    jQuery('.toggle-password').click(function() {
       jQuery(this).toggleClass('icon-eye icon-eye-off');
       const input = jQuery(jQuery(this).attr('toggle'));
       if (input.attr('type') === 'password') {

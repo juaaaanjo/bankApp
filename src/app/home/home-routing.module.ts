@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'transaction-approval',
     loadChildren: () => import('./transaction-approval/transaction-approval.module').then( m => m.TransactionApprovalPageModule)
+  },
+  {
+    path: 'manage-accounts',
+    loadChildren: () => import('./manage-accounts/manage-accounts.module').then( m => m.ManageAccountsPageModule)
   }
 ];
 

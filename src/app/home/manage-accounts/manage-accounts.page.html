@@ -1,0 +1,29 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons routerLink="/home" routerDirection="root" slot="start">
+      <ion-button>
+        <ion-icon
+          class="header-back-icon"
+          name="chevron-back-outline"
+        ></ion-icon>
+        <ion-text class="header-back-text"> Cuentas Inscritas </ion-text>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content scroll-y="false">
+  <ion-item-sliding *ngFor="let account of accounts">
+  <ion-item style="margin-top: 5%" button detail="false">
+    <ion-label>
+      <h3 id="account-header">{{account?.account}} - {{account?.finantialInstitution}}</h3>
+      <p id="account-subHeader">{{account?.alias}} - {{account?.accountType}} - {{account?.currency}}</p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item-options>
+    <ion-item-option color="danger">Delete</ion-item-option>
+  </ion-item-options>
+
+  </ion-item-sliding>
+</ion-content>
